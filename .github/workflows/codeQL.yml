@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [main]
 
-jobs:
+jobs:          
   CodeQL-Build:
     runs-on: ubuntu-latest
 
@@ -13,6 +13,11 @@ jobs:
       security-events: write
       actions: read
       contents: read
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ['javascript-typescript', 'python']
 
     steps:
       - name: Checkout repository
